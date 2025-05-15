@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEHRUZ_JOURNAL - Inspiring Digital Magazine</title>
-    <!-- Подключаем иконки и шрифты -->
+    <title>BEHRUZ_JOURNAL - Электронный Школьный Журнал</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -16,41 +15,29 @@
         }
 
         :root {
-            --primary-color: #2E3192;
-            --secondary-color: #1BFFFF;
-            --accent-color: #D4145A;
-            --text-color: #2c3e50;
-            --light-bg: #f8f9fa;
+            --primary: #2196F3;
+            --secondary: #4CAF50;
+            --accent: #FF4081;
+            --dark: #333;
+            --light: #f5f5f5;
         }
 
         body {
-            background: var(--light-bg);
-            overflow-x: hidden;
+            background-color: var(--light);
+            line-height: 1.6;
         }
 
-        /* Анимированная верхняя панель */
-        .top-bar {
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 0.5rem 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            animation: gradientFlow 5s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        /* Улучшенная навигация */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             padding: 1rem 2rem;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            position: sticky;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
             top: 0;
             z-index: 1000;
         }
 
-        .navbar-content {
+        .nav-content {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
@@ -58,358 +45,214 @@
             align-items: center;
         }
 
-        .navbar-brand {
-            font-size: 2.2rem;
+        .logo {
+            font-size: 24px;
             font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-links a:hover::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        /* Улучшенный hero-раздел */
-        .hero {
-            height: 90vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-slider {
-            height: 100%;
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .hero-slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide1 { background-image: url('https://source.unsplash.com/1920x1080/?digital,technology'); }
-        .slide2 { background-image: url('https://source.unsplash.com/1920x1080/?nature,peaceful'); }
-        .slide3 { background-image: url('https://source.unsplash.com/1920x1080/?creative,art'); }
-
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            z-index: 2;
-            width: 90%;
-            max-width: 800px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(46, 49, 146, 0.7), rgba(212, 20, 90, 0.7));
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 1s ease 0.2s;
-        }
-
-        /* Красивые кнопки */
-        .cta-buttons {
+        .nav-buttons {
             display: flex;
             gap: 20px;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.4s;
         }
 
-        .cta-button {
-            padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
+        .btn {
+            padding: 10px 25px;
+            border-radius: 25px;
             text-decoration: none;
-            position: relative;
-            overflow: hidden;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
-        .primary-btn {
-            background: var(--primary-color);
+        .btn-primary {
+            background: var(--primary);
             color: white;
         }
 
-        .secondary-btn {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero {
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image img {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .cta-button:hover::after {
-            opacity: 1;
-        }
-
-        /* Улучшенные карточки преимуществ */
         .features {
-            padding: 8rem 2rem;
+            padding: 5rem 2rem;
             background: white;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: var(--dark);
+            margin-bottom: 3rem;
         }
 
         .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .feature-card {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-radius: 20px;
             background: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: 0;
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.1;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            text-align: center;
         }
 
         .feature-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
         }
 
         .feature-icon {
-            font-size: 3.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 3rem;
+            color: var(--primary);
             margin-bottom: 1.5rem;
-            position: relative;
         }
 
         .feature-title {
             font-size: 1.5rem;
+            color: var(--dark);
             margin-bottom: 1rem;
-            color: var(--text-color);
-            position: relative;
         }
 
         .feature-description {
-            color: #7f8c8d;
-            line-height: 1.8;
-            position: relative;
+            color: #666;
         }
 
-        /* Анимации */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Медиа запросы */
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
                 font-size: 2.5rem;
             }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+
+            .hero-image {
+                grid-row: 1;
             }
         }
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <i class="far fa-clock"></i> UTC: 2025-05-15 07:22:00
-    </div>
-
     <nav class="navbar">
-        <div class="navbar-content">
-            <a href="/" class="navbar-brand">
-                <i class="fas fa-book-reader"></i>
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
                 BEHRUZ_JOURNAL
             </a>
-            <div class="nav-links">
-                <a href="#главная"><i class="fas fa-home"></i> Главная</a>
-                <a href="#статьи"><i class="fas fa-newspaper"></i> Статьи</a>
-                <a href="#о-нас"><i class="fas fa-users"></i> О нас</a>
-                <a href="#контакты"><i class="fas fa-envelope"></i> Контакты</a>
+            <div class="nav-buttons">
+                <a href="#" class="btn btn-outline">Демо</a>
+                <a href="login.html" class="btn btn-primary">Войти</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-slider">
-            <div class="hero-slide slide1"></div>
-        </div>
         <div class="hero-content">
-            <h1>BEHRUZ_JOURNAL</h1>
-            <p>Откройте для себя мир вдохновения и знаний</p>
-            <div class="cta-buttons">
-                <a href="#начать" class="cta-button primary-btn">
-                    <i class="fas fa-book-open"></i> Начать чтение
-                </a>
-                <a href="#подписаться" class="cta-button secondary-btn">
-                    <i class="fas fa-envelope"></i> Подписаться
-                </a>
+            <div class="hero-text">
+                <h1>Современный электронный журнал для вашей школы</h1>
+                <p>BEHRUZ_JOURNAL - это удобная система для учёта успеваемости, посещаемости и организации учебного процесса</p>
+                <a href="#features" class="btn btn-primary">Узнать больше</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" 
+                     alt="Электронный журнал">
             </div>
         </div>
     </section>
 
-    <section class="features">
-        <h2 class="section-title">Наши преимущества</h2>
+    <section class="features" id="features">
+        <h2 class="section-title">Преимущества системы</h2>
         <div class="features-grid">
             <div class="feature-card">
-                <i class="fas fa-lightbulb feature-icon"></i>
-                <h3 class="feature-title">Инновационный подход</h3>
-                <p class="feature-description">Современные решения и креативные идеи для вашего развития</p>
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3 class="feature-title">Мониторинг успеваемости</h3>
+                <p class="feature-description">Удобные инструменты для отслеживания прогресса учеников и формирования отчётов</p>
             </div>
-            
+
             <div class="feature-card">
-                <i class="fas fa-rocket feature-icon"></i>
-                <h3 class="feature-title">Быстрый старт</h3>
-                <p class="feature-description">Моментальный доступ к необходимой информации в любое время</p>
+                <i class="fas fa-users feature-icon"></i>
+                <h3 class="feature-title">Доступ для всех</h3>
+                <p class="feature-description">Отдельные аккаунты для учителей, учеников и родителей с разным уровнем доступа</p>
             </div>
-            
+
             <div class="feature-card">
-                <i class="fas fa-globe feature-icon"></i>
-                <h3 class="feature-title">Глобальное сообщество</h3>
-                <p class="feature-description">Будьте частью международного сообщества профессионалов</p>
+                <i class="fas fa-mobile-alt feature-icon"></i>
+                <h3 class="feature-title">Всегда под рукой</h3>
+                <p class="feature-description">Доступ к журналу с любого устройства в любое время через интернет</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3 class="feature-title">Безопасность</h3>
+                <p class="feature-description">Надёжная защита персональных данных и шифрование всей информации</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-bell feature-icon"></i>
+                <h3 class="feature-title">Уведомления</h3>
+                <p class="feature-description">Мгновенные оповещения об оценках, домашних заданиях и событиях</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-file-alt feature-icon"></i>
+                <h3 class="feature-title">Отчётность</h3>
+                <p class="feature-description">Автоматическое формирование отчётов и статистики успеваемости</p>
             </div>
         </div>
     </section>
-
-    <script>
-        // Простая анимация для hero-секции
-        document.addEventListener('DOMContentLoaded', () => {
-            const heroContent = document.querySelector('.hero-content');
-            heroContent.style.opacity = '0';
-            setTimeout(() => {
-                heroContent.style.transition = 'opacity 1s ease';
-                heroContent.style.opacity = '1';
-            }, 500);
-        });
-    </script>
 </body>
 </html>
