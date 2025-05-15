@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEHRUZ_JOURNAL - Inspiring Digital Magazine</title>
+    <!-- Подключаем иконки и шрифты -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        :root {
+            --primary-color: #2E3192;
+            --secondary-color: #1BFFFF;
+            --accent-color: #D4145A;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: var(--light-bg);
+            overflow-x: hidden;
+        }
+
+        /* Анимированная верхняя панель */
+        .top-bar {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.5rem 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            animation: gradientFlow 5s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        /* Улучшенная навигация */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Улучшенный hero-раздел */
+        .hero {
+            height: 90vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide1 { background-image: url('https://source.unsplash.com/1920x1080/?digital,technology'); }
+        .slide2 { background-image: url('https://source.unsplash.com/1920x1080/?nature,peaceful'); }
+        .slide3 { background-image: url('https://source.unsplash.com/1920x1080/?creative,art'); }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(46, 49, 146, 0.7), rgba(212, 20, 90, 0.7));
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease 0.2s;
+        }
+
+        /* Красивые кнопки */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.4s;
+        }
+
+        .cta-button {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+
+        /* Улучшенные карточки преимуществ */
+        .features {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+
+        .feature-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .feature-description {
+            color: #7f8c8d;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Медиа запросы */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <i class="far fa-clock"></i> UTC: 2025-05-15 07:22:00
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="/" class="navbar-brand">
+                <i class="fas fa-book-reader"></i>
+                BEHRUZ_JOURNAL
+            </a>
+            <div class="nav-links">
+                <a href="#главная"><i class="fas fa-home"></i> Главная</a>
+                <a href="#статьи"><i class="fas fa-newspaper"></i> Статьи</a>
+                <a href="#о-нас"><i class="fas fa-users"></i> О нас</a>
+                <a href="#контакты"><i class="fas fa-envelope"></i> Контакты</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide slide1"></div>
+        </div>
+        <div class="hero-content">
+            <h1>BEHRUZ_JOURNAL</h1>
+            <p>Откройте для себя мир вдохновения и знаний</p>
+            <div class="cta-buttons">
+                <a href="#начать" class="cta-button primary-btn">
+                    <i class="fas fa-book-open"></i> Начать чтение
+                </a>
+                <a href="#подписаться" class="cta-button secondary-btn">
+                    <i class="fas fa-envelope"></i> Подписаться
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title">Наши преимущества</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-lightbulb feature-icon"></i>
+                <h3 class="feature-title">Инновационный подход</h3>
+                <p class="feature-description">Современные решения и креативные идеи для вашего развития</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-rocket feature-icon"></i>
+                <h3 class="feature-title">Быстрый старт</h3>
+                <p class="feature-description">Моментальный доступ к необходимой информации в любое время</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-globe feature-icon"></i>
+                <h3 class="feature-title">Глобальное сообщество</h3>
+                <p class="feature-description">Будьте частью международного сообщества профессионалов</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Простая анимация для hero-секции
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroContent = document.querySelector('.hero-content');
+            heroContent.style.opacity = '0';
+            setTimeout(() => {
+                heroContent.style.transition = 'opacity 1s ease';
+                heroContent.style.opacity = '1';
+            }, 500);
+        });
+    </script>
+</body>
+</html>
